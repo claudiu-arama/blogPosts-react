@@ -2,7 +2,8 @@ import React from 'react';
 import axios from '../../../axios';
 import Post from '../../../components/Post/Post';
 import './Posts.css';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
 
 class Posts extends React.Component {
   state = {
@@ -33,8 +34,9 @@ class Posts extends React.Component {
   postSelectedHandler = (id) => {
     // this.setState({ selectedPostId: id }); - case 1
     // case 2 - navigating programatically, mostly used after a given operation has finished
-    // this.props.history.push('/' + id) - push string or object, both work
-    this.props.history.push({ pathname: '/' + id });
+    //  - push string or object, both work
+    // this.props.history.push('/' + id)
+    this.props.history.push({ pathname: '/posts/' + id });
   };
 
   render() {
@@ -58,7 +60,15 @@ class Posts extends React.Component {
         );
       });
     }
-    return <section className="Posts">{posts}</section>;
+    return (
+      <div>
+        <section className="Posts">{posts}</section>
+        <Route
+          path={this.props.match.url + '/:id'}
+          component={FullPost}
+        />
+      </div>
+    );
   }
 }
 

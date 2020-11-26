@@ -1,38 +1,43 @@
 .FullPost {
-    width: 80%;
-    margin: 20px auto;
-    border: 1px solid #eee;
-    box-shadow: 0 2px 3px #ccc;
-    text-align: center;
-}
-
-.Edit {
-
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 3px #ccc;
+  text-align: center;
+  border-radius: 10px;
 }
 
 .Edit label {
-    display: block;
-    color: grey;
+  display: block;
+  color: grey;
 }
 
 .Edit button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    outline: none;
-    color: #fa923f;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  color: #fa923f;
 }
 
 .Edit button:hover,
 .Edit button:active {
-    color: #521751;
+  color: #521751;
 }
 
 .Edit button.Delete {
-    color: red;
+  color: red;
+  padding: 10px 20px;
+  margin: 10px;
+  border: 1px solid red;
+  box-shadow: 2px 2px 2px coral;
+  background-color: red;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 10px;
 }
 
 .Edit button.Delete:hover,
 .Edit button.Delete:active {
-    color: darkred;
+  color: darkred;
 }
