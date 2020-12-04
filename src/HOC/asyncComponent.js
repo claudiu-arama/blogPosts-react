@@ -8,6 +8,7 @@ const asyncComponent = (importComponent) => {
     };
 
     componentDidMount() {
+      // importComponent() -function call -> returns a promise
       importComponent().then((cmpnt) => {
         this.setState({ component: cmpnt.default });
       });
@@ -15,6 +16,7 @@ const asyncComponent = (importComponent) => {
     render() {
       const Comp = this.state.component;
       // pass props down to the Comp component
+      // conditionally render Comp if Comp has been set
       return Comp ? <Comp {...this.props} /> : null;
     }
   };

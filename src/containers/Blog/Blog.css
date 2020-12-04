@@ -21,3 +21,14 @@
 .Blog a.active {
   color: #fa923f;
 }
+
+.rootStyle {
+  width: 75%;
+  text-align: center;
+  margin: 50px auto;
+  font-family: arial;
+  font-size: 1.2rem;
+  border: 2px solid orange;
+  border-radius: 15px;
+  background-color: rgba(216, 210, 210, 0.144);
+}

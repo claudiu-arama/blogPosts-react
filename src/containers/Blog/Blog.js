@@ -3,19 +3,16 @@ import axios from '../../axios';
 import Posts from './Posts/Posts';
 import './Blog.css';
 
-// react 16.6 and higher => use React.lazy for Lazy Loading =>
-const NewPost = React.lazy(() => import('../Blog/NewPost/NewPost'));
-// end of React.lazy
-
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-// import NewPost from '../Blog/NewPost/NewPost';
-import asyncComponent from '../../HOC/asyncComponent';
 
-// dynamic import syntax - imported
-// const AsyncNewPost = asyncComponent(() => {
-//   return import('../Blog/NewPost/NewPost');
-// });
-// end of dynamic import with hoc
+// HOC dynamic importing - *****
+import asyncComponent from '../../HOC/asyncComponent';
+// dynamic import syntax - asyncComponent is executed, is a function and the argument
+// should also be a function
+const AsyncNewPost = asyncComponent(() => {
+  return import('../Blog/NewPost/NewPost');
+});
+// end of dynamic import with hoc - *******
 
 class Blog extends Component {
   state = {
@@ -36,8 +33,7 @@ class Blog extends Component {
                   activeStyle={{
                     color: '#fa923f',
                     textDecoration: 'underline',
-                  }}
-                >
+                  }}>
                   Posts
                 </NavLink>
               </li>
@@ -49,8 +45,7 @@ class Blog extends Component {
                     // relative path: pathname: this.props.match.url + '/newPost';
                     hash: '#submit',
                     search: '?quick-submit=true',
-                  }}
-                >
+                  }}>
                   New Post
                 </NavLink>
               </li>
@@ -59,22 +54,11 @@ class Blog extends Component {
         </header>
         <Switch>
           {this.state.auth ? (
-            // dynamic importing with HOC
-            // <Route path="/newPost" component={AsyncNewPost} />
-            // end of dynamic import with HOC
+            // dynamic importing with HOC -******
+            <Route path="/newPost" component={AsyncNewPost} />
+          ) : // end of dynamic import with HOC -*****
 
-            // to lazy render the Posts, we use Suspense Component, imported at the top.
-            <Route
-              path="/newPost"
-              render={() => (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <NewPost {...this.props} />
-                </Suspense>
-              )}
-            />
-          ) : null}
-          {/* end of lazy render*/}
-
+          null}
           {/* <Route path="/" exact render={() => <h1>Home</h1>} /> */}
 
           <Route path="/posts" component={Posts} />
@@ -88,9 +72,8 @@ class Blog extends Component {
           <Route
             render={() => (
               <h1 className="rootStyle">
-                Opps! you are not supposed to be here! Click "Posts"
-                or "New Post" at the top of the back to go back to
-                normality!
+                Oops! You are not supposed to be here! Click "Posts" or "New
+                Post" at the top of the back to go where the action is!
               </h1>
             )}
           />
