@@ -11,7 +11,7 @@ class NewPost extends Component {
     this.state = {
       title: '',
       content: '',
-      author: 'Max',
+      author: '',
       submitted: false,
     };
   }
@@ -58,8 +58,8 @@ class NewPost extends Component {
         <select
           value={this.state.author}
           onChange={(event) => this.setState({ author: event.target.value })}>
-          <option value="Max">Established Author</option>
-          <option value="Manu">Up-and-coming Author</option>
+          <option value="Established Author">Established Author</option>
+          <option value="Up-and-coming Author">Up-and-coming Author</option>
         </select>
         <button onClick={this.postDataHandler}>Add Post</button>
       </div>
