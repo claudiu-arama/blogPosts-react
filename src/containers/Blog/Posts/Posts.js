@@ -11,11 +11,10 @@ class Posts extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     axios
       .get('/posts')
       .then((response) => {
-        const posts = response.data.slice(0, 4);
+        const posts = response.data.slice(0, 6);
         const updatedPosts = posts.map((post) => {
           return {
             ...post,
@@ -40,9 +39,7 @@ class Posts extends React.Component {
   };
 
   render() {
-    let posts = (
-      <p style={{ textAlign: 'center' }}>Something went wrong!</p>
-    );
+    let posts = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
     if (!this.state.error) {
       posts = this.state.posts.map((post) => {
         return (
@@ -63,10 +60,7 @@ class Posts extends React.Component {
     return (
       <div>
         <section className="Posts">{posts}</section>
-        <Route
-          path={this.props.match.url + '/:id'}
-          component={FullPost}
-        />
+        <Route path={this.props.match.url + '/:id'} component={FullPost} />
       </div>
     );
   }

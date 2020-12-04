@@ -67,13 +67,14 @@ class Blog extends Component {
           {/* path: '/:' will be replaced dynamically */}
           {/* <Route path="/:id" exact component={FullPost} /> */}
 
-          {/* next 2 lines- redirect in case of restricted access or wrong address, 2 ways of doing it */}
+          {/* redirect in case of restricted access or wrong address, with <Redirect /> */}
           {/* <Redirect from="/" to="/posts" /> */}
+          {/* redirect with route and no path - render for unknown route */}
           <Route
             render={() => (
               <h1 className="rootStyle">
                 Oops! You are not supposed to be here! Click "Posts" or "New
-                Post" at the top of the back to go where the action is!
+                Post" at the top to go where the action is!
               </h1>
             )}
           />
